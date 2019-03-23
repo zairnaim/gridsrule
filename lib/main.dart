@@ -12,9 +12,7 @@ class MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        primarySwatch: Colors.red
-      ),
+      theme: ThemeData(primarySwatch: Colors.red),
       home: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.red,
@@ -61,11 +59,63 @@ class MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
   }
 }
 
-class SimpleWidget extends StatelessWidget {
+class SimpleWidget extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => SimpleWidgetState();
+}
+
+class SimpleWidgetState extends State<SimpleWidget> {
+  int stepCounter = 0;
+  List<Step> steplist = [
+    Step(
+      title: Text("Step One"),
+      content: Text("This Is Step One"),
+      isActive: true,
+    ),
+    Step(
+      title: Text("Step Two"),
+      content: Text("This Is Step Two"),
+      isActive: true,
+    ),
+    Step(
+      title: Text("Step Three"),
+      content: Text("This Is Step Three"),
+      isActive: true,
+    ),
+    Step(
+      title: Text("Step Four"),
+      content: Text("This Is Step Four"),
+      isActive: true,
+    ),
+  ];
+
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text("These are the setting"),
+    return Container(
+      child: Stepper(
+        currentStep: stepCounter,
+        steps: steplist,
+        type: StepperType.vertical,
+        onStepTapped: (step) {
+          setState(() {
+            stepCounter = step;
+          });
+        },
+        onStepCancel: () {
+          setState(() {
+            stepCounter > 0 ? stepCounter -= 1 : stepCounter = 0;
+          });
+        },
+        onStepContinue: () {
+          setState(
+            () {
+              stepCounter < steplist.length - 1
+                  ? stepCounter += 1
+                  : stepCounter = 0;
+            },
+          );
+        },
+      ),
     );
   }
 }
