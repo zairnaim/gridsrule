@@ -68,17 +68,17 @@ class SimpleWidgetState extends State<SimpleWidget> {
   int stepCounter = 0;
   List<Step> steplist = [
     Step(
-      title: Text("Step One"),
+      title: Text("Take Photo"),
       content: Text("This Is Step One"),
       isActive: true,
     ),
     Step(
-      title: Text("Step Two"),
-      content: Text("This Is Step Two"),
+      title: Text("Edit Photos"),
+      content: Text("dsfasdf"),
       isActive: true,
     ),
     Step(
-      title: Text("Step Three"),
+      title: Text("File Settings"),
       content: Text("This Is Step Three"),
       isActive: true,
     ),
